@@ -1,0 +1,31 @@
+type student struct {
+	name  string
+	score int
+}
+
+func findMax(a []student, n int) int {
+	s := n
+	for i := n + 1; i < len(a); i++ {
+		if a[s].score < a[i].score {
+			s = i
+		}
+	}
+	return s
+}
+
+func sort(a []student) {
+	for i := 0; i < len(a); i++ {
+		s := findMax(a, i)
+		a[i], a[s] = a[s], a[i]
+	}
+}
+
+func passNames(a []student) []string {
+	return [x.name for x <- a, x.score >= 60]
+}
+
+a := [student{"a", 92}, student{"b", 53}, student{"c", 60}]
+
+sort(a)
+println(a)
+println(passNames(a))
