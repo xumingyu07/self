@@ -24,8 +24,35 @@ func passNames(a []student) []string {
 	return [x.name for x <- a, x.score >= 60]
 }
 
+func findScore(a []student, name string) (score int, ok bool) {
+	for x <- a {
+		if x.name == name {
+			return x.score, true
+		}
+	}
+	return 0, false
+}
+
+func passedNames(a []student) []string {
+	return [x.name for x <- a, x.score >= 60]
+}
+
+func findScore2(a []student, name string) (score int, ok bool) {
+	return {x.score for x <- a, x.name == name}
+}
+
+func hasFailed(a []student) bool {
+	_, ok := {0 for x <- a, x.score < 60}
+	return ok
+}
+
 a := [student{"a", 92}, student{"b", 53}, student{"c", 60}]
 
 sort(a)
 println(a)
-println(passNames(a))
+println(findScore(a, "a"))
+println(findScore(a, "jj"))
+println(passedNames(a))
+println(findScore2(a, "a"))
+println(findScore2(a, "jj"))
+println(hasFailed(a))
