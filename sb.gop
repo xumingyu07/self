@@ -42,8 +42,7 @@ func findScore2(a []student, name string) (score int, ok bool) {
 }
 
 func hasFailed(a []student) bool {
-	_, ok := {0 for x <- a, x.score < 60}
-	return ok
+	return {for x <- a, x.score < 60}
 }
 
 a := [student{"a", 92}, student{"b", 53}, student{"c", 60}]
